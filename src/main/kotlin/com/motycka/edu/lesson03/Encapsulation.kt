@@ -9,6 +9,7 @@ import java.time.LocalDate
     - `dueDate` of type `LocalDate` - should be public, immutable and initialized in the constructor
     - `assignee` of type `String` - should be public, immutable and initialized in the constructor
 
+
   And the following private property:
     - `finalGrade` of type `Int?` (nullable) - should be private, mutable and initialized to null
 
@@ -17,13 +18,31 @@ import java.time.LocalDate
       Use: require(finalGrade in 0..100) { "Final grade must be between 0 and 100" }
     - `getFinalGrade()`: returns the finalGrade for the assignment.
  */
+class Assignment( val dueDate: LocalDate, val assignee: String) {
 
-/*
- Uncomment the main function to try the solution.
- */
+    private var finalGrade: Int? = null
 
-//fun main() {
-//    val assignment = Assignment(LocalDate.now(), "John Doe")
-//    assignment.setFinalGrade(90)
-//    println(assignment.getFinalGrade())
-//}
+    fun setFinalGrade(grade: Int) {
+        require(grade in 0..100) { "Final grade must be between 0 and 100" }
+        finalGrade = grade
+    }
+
+    fun getFinalGrade(): Int ?{
+        return finalGrade!!
+    }
+
+
+}
+
+
+
+fun main() {
+    val assignment = Assignment(LocalDate.now(), "John Doe")
+    assignment.setFinalGrade(90)
+    println(assignment.getFinalGrade())
+}
+
+//1. Create a class **Assignment** with the following properties:
+//- `dueDate: LocalDate` - should be public, immutable and initialized in the constructor
+//- `assignee: String` - should be public, immutable and initialized in the constructor
+//- `finalGrade: Int?` - should be private, mutable and initialized to null (nullable)
