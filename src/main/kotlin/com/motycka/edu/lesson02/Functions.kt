@@ -15,8 +15,12 @@ fun processOrder(items: List<String>, payment: Double): Double {
     val orderId = placeOrder(items)
     val totalToPay = payOrder(orderId)
 
-    val change = payment-totalToPay
+    if (payment < totalToPay) {
+        throw IllegalArgumentException("Insufficient payment. Total to pay is $totalToPay, but received $payment.")
+    }
 
+    println("Payment received for Order ID $orderId: $payment")
+    val change = payment-totalToPay
     completeOrder(orderId)
 
     return change
@@ -33,18 +37,19 @@ fun placeOrder(items: List<String>): Int {
 // TODO Implement payOrder(orderId: Int): Double
 fun payOrder(orderId: Int): Double{
     val items = coffeeOrders[orderId] ?: throw IllegalArgumentException("Order ID $orderId not found")
-    val total = items.sumOf { getPrice(it) }
+    val initialTotal = items.sumOf { getPrice(it) }
     //apply discount if 3 or more items are ordered
-    val discount = if (items.size >= 3) {
+    val finalTotal = if (items.size >= 3) {
         println("You ordered 3 or more items, you get 1 for free!")
-        val discount= getPrice(items.minOrNull() ?: throw IllegalArgumentException("No items in order"))
-        total-discount
+        val prices=items.map { getPrice(it) }
+        val discountAmount=prices.minOrNull() ?: 0.0
+        initialTotal-discountAmount
     } else {
-        total
+        initialTotal
     }
 
-    println("Total amount to pay for Order ID $orderId: $total")
-    return total
+    println("Total amount to pay for Order ID $orderId: $finalTotal")
+    return finalTotal
 
 }
 
@@ -61,11 +66,14 @@ fun completeOrder(orderId: Int) {
 
 fun getPrice(item: String): Double {
     return when (item) {
-        ESPRESSO -> 5.0
-        CAPPUCCINO -> 6.0
-        AMERICANO -> 4.0
-        FLAT_WHITE -> 5.5
-        DOUBLE_ESPRESSO -> 7.0
+        ESPRESSO -> ESPRESSO_PRICE
+        CAPPUCCINO -> CAPPUCCINO_PRICE
+        AMERICANO -> AMERICANO_PRICE
+        FLAT_WHITE -> FLAT_WHITE_PRICE
+        DOUBLE_ESPRESSO -> DOUBLE_ESPRESSO_PRICE
+        LATTE -> LATTE_PRICE
+        MOCHA -> MOCHA_PRICE
+        MACCHIATO -> MACCHIATO_PRICE
         else -> throw IllegalArgumentException("Unknown item: $item")
     }
 }

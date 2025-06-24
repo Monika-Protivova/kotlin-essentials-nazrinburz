@@ -7,6 +7,8 @@ const val CAPPUCCINO_PRICE = 3.0
 const val LATTE_PRICE = 3.5
 const val AMERICANO_PRICE = 2.0
 const val FLAT_WHITE_PRICE = 3.2
+const val MOCHA_PRICE = 2.5 // I added, since  these items are on the menu
+const val MACCHIATO_PRICE = 3.0
 
 /*
     1. Get price bas on item names
@@ -34,6 +36,8 @@ fun conditionals() {
                 LATTE -> LATTE_PRICE
                 AMERICANO -> AMERICANO_PRICE
                 FLAT_WHITE -> FLAT_WHITE_PRICE
+                MOCHA -> MOCHA_PRICE
+                MACCHIATO -> MACCHIATO_PRICE
                 else -> 0.0 // Default case for unknown items
             }
         }
