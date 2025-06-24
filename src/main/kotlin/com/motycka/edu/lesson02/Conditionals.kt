@@ -44,7 +44,7 @@ fun conditionals() {
         val initialTotal=prices.sum()
 
         val total: Double = if(items.size >= 3) {
-            println("You ordered 3 or more items, you get 1 for free!")
+            println("You ordered 3 or more coffees, you get 1 for free!")
             val discount = prices.minOrNull() ?: 0.0
             initialTotal - discount
         } else {

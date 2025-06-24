@@ -73,10 +73,10 @@ class FunctionsTest : StringSpec({
     }
 
     "payOrder should calculate correct total for multiple items" {
-        val orderId = placerOrder(listOf(ESPRESSO, CAPPUCCINO, AMERICANO))
+        val orderId = placerOrder(listOf(ESPRESSO, CAPPUCCINO))
         val total = payOrder(orderId)
 
-        total shouldBeExactly (ESPRESSO_PRICE + CAPPUCCINO_PRICE + AMERICANO_PRICE)
+        total shouldBeExactly (ESPRESSO_PRICE + CAPPUCCINO_PRICE)
     }
 
     "payOrder should apply discount for 3 or more items" {

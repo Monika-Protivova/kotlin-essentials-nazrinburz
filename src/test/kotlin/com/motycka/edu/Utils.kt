@@ -14,5 +14,9 @@ fun captureStdout(block: () -> Unit): String {
         System.setOut(originalOut)
     }
 
-    return outputStream.toString().trim()
+    return outputStream
+        .toString()
+        .replace("\r\n", "\n") // normalize line endings (important for CI)
+        .trimEnd()             // avoid test failure due to trailing newlines
+        //thanks to chatgpt :)
 }
