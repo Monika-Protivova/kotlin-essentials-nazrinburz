@@ -28,7 +28,7 @@ class Assignment( val dueDate: LocalDate, val assignee: String) {
     }
 
     fun getFinalGrade(): Int ?{
-        return finalGrade!!
+        return finalGrade
     }
 
 

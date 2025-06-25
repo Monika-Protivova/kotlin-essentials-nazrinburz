@@ -14,10 +14,33 @@ package com.motycka.edu.lesson03
  The check will tolerate 0.001 inaccuracy.
  */
 
-/*
- Uncomment the main function to try the solution.
- */
+object AreaCalculator {
 
-//fun main() {
-//    println(AreaCalculator.calculateRectangleArea(5, 10))
-//}
+    fun calculateRectangleArea(a: Double, b: Double): Double {
+        return a * b
+    }
+
+    fun calculateRectangleArea(a: Int, b: Int): Double {
+        return a * b.toDouble()
+    }
+
+    fun calculateCircleArea(r: Double): Double {
+        return Math.PI * r * r
+    }
+
+    fun calculateCircleArea(r: Int): Double {
+        return Math.PI * r * r.toDouble()
+    }
+
+    fun calculateTriangleArea(a: Double, b: Double): Double {
+        return 0.5 * a * b
+    }
+
+    fun calculateTriangleArea(a: Int, b: Int): Double {
+        return 0.5 * a * b.toDouble()
+    }
+}
+
+fun main() {
+    println(AreaCalculator.calculateRectangleArea(5, 10))
+}
